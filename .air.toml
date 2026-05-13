@@ -1,0 +1,25 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o tmp\\main.exe .\\cmd\\main.go"
+  bin = "tmp\\main.exe"
+  delay = 1000
+  exclude_dir = ["assets", "tmp", "vendor", "testdata", "frontend"]
+  include_ext = ["go"]
+  kill_delay = "0s"
+  stop_on_error = false
+  log = "build-errors.log"
+
+[log]
+  time = false
+
+[color]
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
+  watcher = "cyan"
+
+[screen]
+  clear_on_rebuild = false
+  keep_scroll = true

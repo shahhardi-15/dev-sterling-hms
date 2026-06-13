@@ -16,7 +16,7 @@ func ConnectDB() *sqlx.DB {
 		log.Fatal("DATABASE_URL is not set in .env")
 	}
 
-	db, err := sqlx.Connect("pgx", dsn+"?default_query_exec_mode=simple_protocol")
+	db, err := sqlx.Connect("pgx", dsn)
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}

@@ -301,7 +301,7 @@ onMounted(async () => {
         api.get("/appointments"),
         api.get(`/patients/${myPatient.id}/prescriptions`),
       ]);
-      appointments.value = apptRes.data.data;
+      appointments.value = apptRes.data.data || [];
       prescriptions.value = prescRes.data.data || [];
     }
   } catch (err) {

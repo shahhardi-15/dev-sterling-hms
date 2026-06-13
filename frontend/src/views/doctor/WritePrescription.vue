@@ -169,8 +169,10 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import api from "../../api/axios";
 
+const route = useRoute();
 const appointments = ref([]);
 const medicines = ref([]);
 const submitting = ref(false);
@@ -204,9 +206,16 @@ onMounted(async () => {
       api.get("/medicines"),
     ]);
     appointments.value = apptRes.data.data.filter(
-      (a) => a.status === "approved",
+      (a) => a.status === "approved" || a.status === "completed",
     );
     medicines.value = medRes.data.data;
+
+    // Auto-select if coming from MyAppointments
+    if (route.query.appointment_id) {
+      form.value.appointment_id = route.query.appointment_id;
+      form.value.patient_id = route.query.patient_id;
+      onAppointmentChange();
+    }
   } catch (err) {
     console.error(err);
   }

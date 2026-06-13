@@ -146,7 +146,7 @@ function validateDateTime(dateTimeStr) {
 onMounted(async () => {
   try {
     const res = await api.get("/doctors");
-    doctors.value = res.data.data;
+    doctors.value = res.data.data || [];
   } catch (err) {
     console.error(err);
   }

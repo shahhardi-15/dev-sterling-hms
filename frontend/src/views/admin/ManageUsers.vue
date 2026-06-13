@@ -215,7 +215,7 @@
             <input
               v-model="form.password"
               type="password"
-              placeholder="••••••••"
+              placeholder="Min. 8 characters"
               class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none transition"
             />
           </div>
@@ -442,7 +442,18 @@ async function createUser() {
     form.value = { full_name: "", email: "", password: "", role: "" };
     await loadUsers();
   } catch (err) {
-    formError.value = err.response?.data?.error || "Failed to create user.";
+    const raw = err.response?.data?.error || "";
+    if (raw.includes("Password") && raw.includes("min")) {
+      formError.value = "Password must be at least 8 characters long.";
+    } else if (raw.includes("Email") || raw.includes("email")) {
+      formError.value = "Please enter a valid email address.";
+    } else if (raw.includes("unique") || raw.includes("duplicate")) {
+      formError.value = "A user with this email already exists.";
+    } else if (raw) {
+      formError.value = raw;
+    } else {
+      formError.value = "Failed to create user. Please try again.";
+    }
   } finally {
     creating.value = false;
   }

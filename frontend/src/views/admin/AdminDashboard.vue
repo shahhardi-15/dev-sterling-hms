@@ -348,7 +348,7 @@ onMounted(async () => {
       api.get("/appointments"),
     ]);
     users.value = usersRes.data.data;
-    appointments.value = apptRes.data.data;
+    appointments.value = apptRes.data.data || [];
     stats.value.totalDoctors = users.value.filter(
       (u) => u.role === "doctor",
     ).length;

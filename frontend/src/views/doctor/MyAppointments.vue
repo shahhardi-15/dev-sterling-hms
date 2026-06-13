@@ -110,11 +110,16 @@
                   >
                     Complete
                   </button>
+                  <button
+                    v-if="appt.status === 'completed'"
+                    @click="goToPrescription(appt)"
+                    class="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 px-3 py-1.5 rounded-lg font-medium transition"
+                  >
+                    Prescribe
+                  </button>
                   <span
                     v-if="
-                      appt.status === 'completed' ||
-                      appt.status === 'rejected' ||
-                      appt.status === 'cancelled'
+                      appt.status === 'rejected' || appt.status === 'cancelled'
                     "
                     class="text-xs text-gray-400"
                     >—</span
@@ -139,10 +144,12 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/auth";
 import api from "../../api/axios";
 
 const auth = useAuthStore();
+const router = useRouter();
 const appointments = ref([]);
 
 onMounted(async () => {
@@ -176,6 +183,16 @@ function formatDate(dateStr) {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+  });
+}
+function goToPrescription(appt) {
+  router.push({
+    name: "WritePrescription",
+    query: {
+      appointment_id: appt.id,
+      patient_id: appt.patient_id,
+      patient_name: appt.patient_name,
+    },
   });
 }
 </script>

@@ -135,17 +135,20 @@ const router = createRouter({
 
 // Navigation guards
 router.beforeEach((to, from, next) => {
-  const auth = useAuthStore();
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const isLoggedIn = !!token;
+  const userRole = user?.role || null;
 
-  if (to.meta.requiresAuth && !auth.isLoggedIn) {
+  if (to.meta.requiresAuth && !isLoggedIn) {
     return next("/login");
   }
 
-  if (to.meta.requiresGuest && auth.isLoggedIn) {
-    return next(`/${auth.userRole}`);
+  if (to.meta.requiresGuest && isLoggedIn) {
+    return next(`/${userRole}`);
   }
 
-  if (to.meta.roles && !to.meta.roles.includes(auth.userRole)) {
+  if (to.meta.roles && !to.meta.roles.includes(userRole)) {
     return next("/unauthorized");
   }
 

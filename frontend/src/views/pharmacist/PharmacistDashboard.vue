@@ -4,7 +4,8 @@
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900">Pharmacist Dashboard</h1>
       <p class="text-gray-400 text-sm mt-1">
-        Welcome back, {{ auth.userName }}. Here's your dispensing queue.
+        Welcome back, {{ auth.userName || "Pharmacist" }}. Here's your
+        dispensing queue.
       </p>
     </div>
 

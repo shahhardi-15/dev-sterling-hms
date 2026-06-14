@@ -254,8 +254,8 @@ async function handleLogin() {
   loading.value = true;
   error.value = "";
   try {
-    const user = await auth.login(email.value, password.value, remember.value);
-    router.push(`/${user.role}`);
+    const user = await auth.login(email.value, password.value);
+    await router.replace(`/${user.role}`);
   } catch (err) {
     error.value = err.response?.data?.error || "Invalid email or password.";
   } finally {

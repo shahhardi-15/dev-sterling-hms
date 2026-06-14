@@ -198,3 +198,60 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { useAuthStore } from "../../stores/auth";
+import api from "../../api/axios";
+
+const auth = useAuthStore();
+const prescriptions = ref([]);
+const loading = ref(false);
+
+const pending = computed(
+  () => prescriptions.value.filter((p) => !p.dispensed).length,
+);
+const dispensed = computed(
+  () => prescriptions.value.filter((p) => p.dispensed).length,
+);
+
+onMounted(async () => {
+  await loadPrescriptions();
+});
+
+async function loadPrescriptions() {
+  if (loading.value) return;
+  loading.value = true;
+  try {
+    const patientsRes = await api.get("/patients");
+    const allPrescriptions = [];
+    for (const patient of patientsRes.data.data) {
+      const res = await api.get(`/patients/${patient.id}/prescriptions`);
+      if (res.data.data) allPrescriptions.push(...res.data.data);
+    }
+    prescriptions.value = allPrescriptions;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    loading.value = false;
+  }
+}
+
+async function dispense(id) {
+  try {
+    await api.patch(`/prescriptions/${id}/dispense`);
+    const prescription = prescriptions.value.find((p) => p.id === id);
+    if (prescription) prescription.dispensed = true;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function formatDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+</script>

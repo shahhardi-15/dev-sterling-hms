@@ -229,24 +229,29 @@ const auth = useAuthStore();
 const appointments = ref([]);
 
 const pending = computed(
-  () => appointments.value.filter((a) => a.status === "pending").length,
+  () => (appointments.value || []).filter((a) => a.status === "pending").length,
 );
 const completed = computed(
-  () => appointments.value.filter((a) => a.status === "completed").length,
+  () =>
+    (appointments.value || []).filter((a) => a.status === "completed").length,
 );
 
 onMounted(async () => {
   try {
+    if (!auth.user?.id) return;
     const doctorRes = await api.get(`/doctors/me/${auth.user.id}`);
-    const doctorID = doctorRes.data.data.id;
-    const res = await api.get(`/doctors/${doctorID}/appointments`);
-    appointments.value = res.data.data;
+    const doctorData = doctorRes.data?.data;
+    if (!doctorData?.id) return;
+    const res = await api.get(`/doctors/${doctorData.id}/appointments`);
+    appointments.value = res.data?.data || [];
   } catch (err) {
-    console.error(err);
+    console.error("DoctorDashboard error:", err);
+    appointments.value = [];
   }
 });
 
 function formatDate(dateStr) {
+  if (!dateStr) return "—";
   return new Date(dateStr).toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",

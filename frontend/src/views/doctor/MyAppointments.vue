@@ -159,7 +159,7 @@ onMounted(async () => {
 async function loadAppointments() {
   try {
     const res = await api.get("/appointments");
-    appointments.value = res.data.data.filter(
+    appointments.value = (res.data.data || []).filter(
       (a) => a.doctor_name === auth.userName,
     );
   } catch (err) {

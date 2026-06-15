@@ -205,7 +205,7 @@ onMounted(async () => {
       api.get("/appointments"),
       api.get("/medicines"),
     ]);
-    appointments.value = apptRes.data.data.filter(
+    appointments.value = (apptRes.data.data || []).filter(
       (a) => a.status === "approved" || a.status === "completed",
     );
     medicines.value = medRes.data.data;

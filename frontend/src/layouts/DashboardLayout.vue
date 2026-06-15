@@ -160,6 +160,7 @@ const allLinks = {
       path: "/admin/users?role=pharmacist",
       icon: icons.pharmacist,
     },
+    { label: "Billing", path: "/admin/billing", icon: icons.prescription },
   ],
   doctor: [
     { label: "Dashboard", path: "/doctor", icon: icons.dashboard },

@@ -34,6 +34,11 @@ const routes = [
         name: "ManageUsers",
         component: () => import("../views/admin/ManageUsers.vue"),
       },
+      {
+        path: "billing",
+        name: "AdminBilling",
+        component: () => import("../views/admin/AdminBilling.vue"),
+      },
     ],
   },
 

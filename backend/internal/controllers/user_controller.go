@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"sterling-hms/internal/services"
 	"sterling-hms/internal/utils"
 
@@ -87,6 +88,7 @@ func (c *UserController) GetAllPatients(ctx *gin.Context) {
 func (c *UserController) GetAllDoctors(ctx *gin.Context) {
 	doctors, err := c.service.GetAllDoctors(ctx.Request.Context())
 	if err != nil {
+		log.Printf("GetAllDoctors error: %v", err)
 		utils.InternalError(ctx, err.Error())
 		return
 	}

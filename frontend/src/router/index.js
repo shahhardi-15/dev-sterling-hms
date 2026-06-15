@@ -104,6 +104,12 @@ const routes = [
         component: () =>
           import("../views/receptionist/ReceptionistDashboard.vue"),
       },
+      {
+        path: "appointments",
+        name: "ReceptionistAppointments",
+        component: () =>
+          import("../views/receptionist/ReceptionistAppointments.vue"),
+      },
     ],
   },
 

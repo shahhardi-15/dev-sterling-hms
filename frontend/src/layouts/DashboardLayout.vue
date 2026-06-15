@@ -186,6 +186,11 @@ const allLinks = {
   ],
   receptionist: [
     { label: "Dashboard", path: "/receptionist", icon: icons.dashboard },
+    {
+      label: "Appointments",
+      path: "/receptionist/appointments",
+      icon: icons.appointments,
+    },
   ],
   pharmacist: [
     { label: "Dashboard", path: "/pharmacist", icon: icons.dashboard },

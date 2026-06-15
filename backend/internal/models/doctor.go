@@ -1,7 +1,6 @@
 package models
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -11,7 +10,7 @@ type Doctor struct {
 	DepartmentID   *string         `db:"department_id" json:"department_id"`
 	Specialization *string         `db:"specialization" json:"specialization"`
 	LicenseNo      *string         `db:"license_no" json:"license_no"`
-	Availability   json.RawMessage `db:"availability" json:"availability"`
+	Availability   *string         `db:"availability" json:"availability"`
 	Bio            *string         `db:"bio" json:"bio"`
 	CreatedAt      time.Time       `db:"created_at" json:"created_at"`
 }

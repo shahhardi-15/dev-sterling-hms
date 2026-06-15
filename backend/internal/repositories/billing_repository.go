@@ -58,3 +58,11 @@ func (r *BillingRepository) MarkAsPaid(ctx context.Context, id, paymentMethod st
 	err := r.db.GetContext(ctx, &billing, query, paymentMethod, id)
 	return &billing, err
 }
+
+func (r *BillingRepository) CreateSimple(ctx context.Context, appointmentID, patientID string, amount float64) error {
+	query := `INSERT INTO billing (appointment_id, patient_id, amount, status)
+			  VALUES ($1, $2, $3, 'pending')
+			  ON CONFLICT DO NOTHING`
+	_, err := r.db.ExecContext(ctx, query, appointmentID, patientID, amount)
+	return err
+}

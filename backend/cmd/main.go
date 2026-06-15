@@ -37,7 +37,7 @@ func main() {
 	apptController := controllers.NewAppointmentController(apptService)
 
 	prescriptionRepo := repositories.NewPrescriptionRepository(db)
-	prescriptionService := services.NewPrescriptionService(prescriptionRepo)
+	prescriptionService := services.NewPrescriptionService(prescriptionRepo, billingRepo)
 	prescriptionController := controllers.NewPrescriptionController(prescriptionService)
 
 	billingRepo := repositories.NewBillingRepository(db)

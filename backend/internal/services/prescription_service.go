@@ -8,11 +8,12 @@ import (
 )
 
 type PrescriptionService struct {
-	repo *repositories.PrescriptionRepository
+	repo        *repositories.PrescriptionRepository
+	billingRepo *repositories.BillingRepository
 }
 
-func NewPrescriptionService(repo *repositories.PrescriptionRepository) *PrescriptionService {
-	return &PrescriptionService{repo: repo}
+func NewPrescriptionService(repo *repositories.PrescriptionRepository, billingRepo *repositories.BillingRepository) *PrescriptionService {
+	return &PrescriptionService{repo: repo, billingRepo: billingRepo}
 }
 
 type CreatePrescriptionRequest struct {
@@ -82,5 +83,9 @@ func (s *PrescriptionService) Dispense(ctx context.Context, id string) (*models.
 	if err != nil {
 		return nil, errors.New("failed to dispense prescription")
 	}
+
+	// Auto-create billing record
+	_ = s.billingRepo.CreateSimple(ctx, prescription.AppointmentID, prescription.PatientID, 500.00)
+
 	return prescription, nil
 }

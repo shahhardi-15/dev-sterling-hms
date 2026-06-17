@@ -6,6 +6,8 @@ type Billing struct {
 	ID              string     `db:"id" json:"id"`
 	AppointmentID   string     `db:"appointment_id" json:"appointment_id"`
 	PatientID       string     `db:"patient_id" json:"patient_id"`
+	Amount          float64    `db:"amount" json:"amount"`
+	Status          string     `db:"status" json:"status"`
 	ConsultationFee float64    `db:"consultation_fee" json:"consultation_fee"`
 	MedicineCost    float64    `db:"medicine_cost" json:"medicine_cost"`
 	OtherCharges    float64    `db:"other_charges" json:"other_charges"`

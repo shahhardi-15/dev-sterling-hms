@@ -149,9 +149,9 @@ onMounted(async () => {
 
 async function markAsPaid(id) {
   try {
-    await api.patch(`/billing/${id}/pay`);
+    await api.patch(`/billing/${id}/pay`, { payment_method: "cash" });
     bills.value = bills.value.map((b) =>
-      b.id === id ? { ...b, paid: true } : b,
+      b.id === id ? { ...b, paid: true, status: "paid" } : b,
     );
   } catch (err) {
     console.error(err);

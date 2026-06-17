@@ -65,6 +65,11 @@ const routes = [
       },
       // Under doctor children, after WritePrescription route, add:
       {
+        path: "prescriptions",
+        name: "DoctorPrescriptions",
+        component: () => import("../views/doctor/DoctorPrescriptions.vue"),
+      },
+      {
         path: "medicines",
         name: "DoctorMedicines",
         component: () => import("../views/doctor/DoctorMedicines.vue"),

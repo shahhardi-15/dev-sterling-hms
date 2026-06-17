@@ -249,7 +249,6 @@
     <div
       v-if="showForm"
       class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      @click.self="closeForm"
     >
       <div
         class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 overflow-y-auto max-h-[90vh]"

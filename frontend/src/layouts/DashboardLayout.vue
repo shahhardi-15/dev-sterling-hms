@@ -174,6 +174,11 @@ const allLinks = {
       path: "/doctor/prescriptions/new",
       icon: icons.prescription,
     },
+    {
+      label: "My Prescriptions",
+      path: "/doctor/prescriptions",
+      icon: icons.prescription,
+    },
     { label: "Medicines", path: "/doctor/medicines", icon: icons.medicine },
   ],
   patient: [

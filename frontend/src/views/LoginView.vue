@@ -1,17 +1,19 @@
 <template>
   <div class="min-h-screen bg-gray-50 flex flex-col">
-    <nav class="px-8 py-5">
+    <nav class="px-4 sm:px-8 py-5">
       <span class="font-bold text-lg tracking-tight" style="color: #1e3a5f">
         Sterling Hospital Management System
       </span>
     </nav>
 
-    <div class="flex-1 flex items-center justify-center px-6 py-10">
+    <div
+      class="flex-1 flex items-center justify-center px-4 sm:px-6 py-6 sm:py-10"
+    >
       <div
-        class="w-full max-w-5xl bg-white rounded-2xl shadow-md border border-gray-100 flex overflow-hidden min-h-[520px]"
+        class="w-full max-w-5xl bg-white rounded-2xl shadow-md border border-gray-100 flex flex-col lg:flex-row overflow-hidden lg:min-h-[520px]"
       >
         <div
-          class="w-1/2 bg-slate-100 p-10 flex flex-col justify-between border-r border-gray-200"
+          class="hidden lg:flex w-full lg:w-1/2 bg-slate-100 p-10 flex-col justify-between border-r border-gray-200"
         >
           <div>
             <div
@@ -52,7 +54,7 @@
           </div>
         </div>
 
-        <div class="w-1/2 p-10 flex flex-col justify-center">
+        <div class="w-full lg:w-1/2 p-6 sm:p-10 flex flex-col justify-center">
           <h2 class="text-2xl font-bold text-gray-900 mb-1">Welcome Back</h2>
           <p class="text-gray-500 text-sm mb-8">
             Please enter your credentials to access your dashboard.
@@ -218,7 +220,7 @@
     </div>
 
     <footer
-      class="px-8 py-5 flex items-center justify-between text-xs text-gray-400"
+      class="px-4 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400"
     >
       <span>© 2026 Sterling Clinical Excellence. All rights reserved.</span>
       <div class="flex gap-6">

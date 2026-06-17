@@ -1,22 +1,57 @@
 <template>
   <div class="min-h-screen flex" style="background-color: #f5f7fa">
+    <!-- Mobile overlay -->
+    <div
+      v-if="sidebarOpen"
+      class="fixed inset-0 bg-black/40 z-40 lg:hidden"
+      @click="sidebarOpen = false"
+    ></div>
+
     <!-- Sidebar -->
     <aside
-      class="w-64 bg-white flex flex-col fixed h-full"
+      class="w-64 bg-white flex flex-col fixed h-full z-50 transition-transform duration-200 lg:translate-x-0"
+      :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
       style="border-right: 1px solid #eef0f3"
     >
       <!-- Logo -->
       <div
-        class="px-6 py-5 flex items-center gap-3"
+        class="px-6 py-5 flex items-center justify-between gap-3"
         style="border-bottom: 1px solid #eef0f3"
       >
-        <div
-          class="w-8 h-8 rounded-lg flex items-center justify-center"
-          style="background-color: #1e3a5f"
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-lg flex items-center justify-center"
+            style="background-color: #1e3a5f"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-gray-900 tracking-tight">
+              Sterling Admin
+            </p>
+            <p class="text-xs text-gray-400">Hospital Management</p>
+          </div>
+        </div>
+        <button
+          @click="sidebarOpen = false"
+          class="lg:hidden text-gray-400 hover:text-gray-600"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 text-white"
+            class="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -25,16 +60,10 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </div>
-        <div>
-          <p class="text-sm font-bold text-gray-900 tracking-tight">
-            Sterling Admin
-          </p>
-          <p class="text-xs text-gray-400">Hospital Management</p>
-        </div>
+        </button>
       </div>
 
       <!-- Nav links -->
@@ -43,6 +72,7 @@
           v-for="link in navLinks"
           :key="link.path"
           :to="link.path"
+          @click="sidebarOpen = false"
           class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 relative"
           :class="
             isActive(link.path)
@@ -104,21 +134,48 @@
     </aside>
 
     <!-- Main content -->
-    <main class="ml-64 flex-1 p-8 min-h-screen">
-      <RouterView />
-    </main>
+    <div class="flex-1 flex flex-col lg:ml-64 min-h-screen min-w-0">
+      <!-- Mobile top bar -->
+      <div
+        class="lg:hidden bg-white px-4 py-3 flex items-center gap-3 sticky top-0 z-30"
+        style="border-bottom: 1px solid #eef0f3"
+      >
+        <button @click="sidebarOpen = true" class="text-gray-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+        <p class="text-sm font-bold text-gray-900">Sterling HMS</p>
+      </div>
+
+      <main class="flex-1 p-4 sm:p-6 lg:p-8">
+        <RouterView />
+      </main>
+    </div>
   </div>
 </template>
-
 <script setup>
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { RouterLink, RouterView, useRouter, useRoute } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 
 const auth = useAuthStore();
 const router = useRouter();
 const route = useRoute();
+const sidebarOpen = ref(false);
 
+// ... rest stays exactly the same
 const userInitial = computed(
   () => auth.userName?.charAt(0).toUpperCase() || "U",
 );

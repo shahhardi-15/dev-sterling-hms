@@ -36,13 +36,13 @@ func main() {
 	apptService := services.NewAppointmentService(apptRepo)
 	apptController := controllers.NewAppointmentController(apptService)
 
-	prescriptionRepo := repositories.NewPrescriptionRepository(db)
-	prescriptionService := services.NewPrescriptionService(prescriptionRepo, billingRepo)
-	prescriptionController := controllers.NewPrescriptionController(prescriptionService)
-
 	billingRepo := repositories.NewBillingRepository(db)
 	billingService := services.NewBillingService(billingRepo)
 	billingController := controllers.NewBillingController(billingService)
+
+	prescriptionRepo := repositories.NewPrescriptionRepository(db)
+	prescriptionService := services.NewPrescriptionService(prescriptionRepo, billingRepo)
+	prescriptionController := controllers.NewPrescriptionController(prescriptionService)
 
 	medicineController := controllers.NewMedicineController(db)
 

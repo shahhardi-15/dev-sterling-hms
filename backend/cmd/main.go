@@ -80,7 +80,7 @@ func main() {
 		patients := v1.Group("/patients")
 		patients.Use(middlewares.JWTAuth())
 		{
-			patients.GET("", middlewares.RequireRoles("admin", "receptionist", "pharmacist", "patient"), userController.GetAllPatients)
+			patients.GET("", middlewares.RequireRoles("admin", "receptionist", "pharmacist", "patient", "doctor"), userController.GetAllPatients)
 			patients.GET("/:id/appointments", middlewares.RequireRoles("admin", "doctor", "receptionist"), apptController.GetByPatientID)
 			patients.GET("/:id/prescriptions", middlewares.RequireRoles("admin", "doctor", "receptionist", "pharmacist", "patient"), prescriptionController.GetByPatientID)
 		}

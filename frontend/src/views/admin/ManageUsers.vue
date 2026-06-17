@@ -169,7 +169,6 @@
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      @click.self="showModal = false"
     >
       <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-xl">
         <h2 class="text-xl font-bold text-gray-900 mb-1">Add New User</h2>
@@ -260,7 +259,6 @@
     <div
       v-if="showResetModal"
       class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      @click.self="showResetModal = false"
     >
       <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-xl">
         <h2 class="text-xl font-bold text-gray-900 mb-1">Reset Password</h2>

@@ -131,6 +131,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import api from "../../api/axios";
+import jsPDF from "jspdf";
 
 const bills = ref([]);
 
@@ -159,28 +160,29 @@ async function markAsPaid(id) {
 }
 
 function downloadReceipt(bill) {
-  const content = `
-STERLING HOSPITAL MANAGEMENT SYSTEM
-====================================
-PAYMENT RECEIPT
+  const doc = new jsPDF();
 
-Bill ID     : ${bill.id}
-Patient     : ${bill.patient_name || "—"}
-Amount      : ₹${bill.amount}
-Status      : ${bill.paid ? "PAID" : "PENDING"}
-Date        : ${formatDate(bill.created_at)}
+  doc.setFontSize(18);
+  doc.setFont(undefined, "bold");
+  doc.text("STERLING HOSPITAL MANAGEMENT SYSTEM", 20, 20);
 
-====================================
-Thank you for choosing Sterling Hospital
-  `.trim();
+  doc.setFontSize(12);
+  doc.setFont(undefined, "normal");
+  doc.text("Payment Receipt", 20, 30);
+  doc.line(20, 34, 190, 34);
 
-  const blob = new Blob([content], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `receipt-${bill.id.slice(0, 8)}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
+  doc.setFontSize(11);
+  doc.text(`Bill ID: ${bill.id}`, 20, 45);
+  doc.text(`Patient: ${bill.patient_name || "—"}`, 20, 53);
+  doc.text(`Amount: Rs. ${bill.amount}`, 20, 61);
+  doc.text(`Status: ${bill.status === "paid" ? "PAID" : "PENDING"}`, 20, 69);
+  doc.text(`Date: ${formatDate(bill.created_at)}`, 20, 77);
+
+  doc.line(20, 85, 190, 85);
+  doc.setFontSize(10);
+  doc.text("Thank you for choosing Sterling Hospital", 20, 95);
+
+  doc.save(`receipt-${bill.id.slice(0, 8)}.pdf`);
 }
 
 function formatDate(dateStr) {

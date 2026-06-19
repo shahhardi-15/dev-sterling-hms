@@ -2,7 +2,7 @@
   <div>
     <div class="mb-8 flex items-center justify-between">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900">Billing</h1>
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Billing</h1>
         <p class="text-gray-400 text-sm mt-1">
           Manage patient billing and payments
         </p>
@@ -10,7 +10,7 @@
     </div>
 
     <!-- Stat Cards -->
-    <div class="grid grid-cols-3 gap-5 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
       <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <p class="text-sm text-gray-400 mb-1">Total Bills</p>
         <p class="text-3xl font-bold text-gray-900">{{ bills.length }}</p>

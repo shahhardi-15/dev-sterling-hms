@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="mb-8 flex items-center justify-between">
+    <div
+      class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+    >
       <div>
         <h1 class="text-3xl font-bold text-gray-900">{{ pageTitle }}</h1>
         <p class="text-gray-400 text-sm mt-1">Create and manage system users</p>

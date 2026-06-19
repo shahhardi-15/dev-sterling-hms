@@ -11,7 +11,6 @@
     </div>
 
     <!-- Stat Cards -->
-    <
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
       <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <div class="flex items-start justify-between mb-4">

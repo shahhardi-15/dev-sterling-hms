@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Header -->
-    <div class="mb-8 flex items-center justify-between">
+    <div
+      class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+    >
       <div>
         <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Medicines</h1>
         <p class="text-gray-400 text-sm mt-1">Manage your medicine inventory</p>
@@ -30,7 +32,7 @@
     </div>
 
     <!-- Stat Cards -->
-    <div class="grid grid-cols-3 gap-5 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
       <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <div class="flex items-start justify-between mb-4">
           <div
@@ -239,7 +241,6 @@
     <div
       v-if="showForm"
       class="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
-      @click.self="showForm = false"
     >
       <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6">
         <h2 class="text-xl font-bold text-gray-900 mb-1">Add New Medicine</h2>
@@ -284,7 +285,7 @@
               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none transition"
             />
           </div>
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label
                 class="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-1.5"

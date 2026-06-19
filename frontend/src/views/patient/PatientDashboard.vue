@@ -2,14 +2,16 @@
   <div>
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Patient Dashboard</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+        Patient Dashboard
+      </h1>
       <p class="text-gray-400 text-sm mt-1">
         Welcome back, {{ auth.userName }}. Here's your health summary.
       </p>
     </div>
 
     <!-- Stat Cards -->
-    <div class="grid grid-cols-3 gap-5 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
       <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <div class="flex items-start justify-between mb-4">
           <div
@@ -116,7 +118,7 @@
     </div>
 
     <!-- Two column layout -->
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <!-- Appointments -->
       <div class="bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div

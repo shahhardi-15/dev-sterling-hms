@@ -2,7 +2,9 @@
   <div>
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">My Prescriptions</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+        My Prescriptions
+      </h1>
       <p class="text-gray-400 text-sm mt-1">
         View all your prescriptions and medicines
       </p>
@@ -15,7 +17,9 @@
         class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6"
       >
         <!-- Header -->
-        <div class="flex items-start justify-between mb-4">
+        <div
+          class="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4"
+        >
           <div>
             <h2 class="text-base font-bold text-gray-900">
               {{ prescription.diagnosis }}

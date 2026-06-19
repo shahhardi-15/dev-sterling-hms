@@ -8,7 +8,7 @@
     </div>
 
     <div
-      class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 max-w-2xl"
+      class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-8 max-w-2xl"
     >
       <div
         v-if="success"

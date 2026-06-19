@@ -8,7 +8,7 @@
     </div>
 
     <div
-      class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 max-w-3xl"
+      class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-8 max-w-3xl"
     >
       <div
         v-if="success"
@@ -91,7 +91,7 @@
           :key="index"
           class="bg-gray-50 rounded-xl p-4 mb-3 border border-gray-100"
         >
-          <div class="grid grid-cols-2 gap-3 mb-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
             <div>
               <label class="block text-xs text-gray-500 mb-1">Medicine</label>
               <select
@@ -114,7 +114,7 @@
               />
             </div>
           </div>
-          <div class="grid grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-xs text-gray-500 mb-1">Frequency</label>
               <input

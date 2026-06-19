@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">My Prescriptions</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+        My Prescriptions
+      </h1>
       <p class="text-gray-400 text-sm mt-1">All prescriptions you've written</p>
     </div>
 

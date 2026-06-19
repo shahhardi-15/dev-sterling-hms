@@ -11,10 +11,10 @@ A full-stack hospital management system built to handle the real day-to-day work
 
 ## Screenshots
 
-![Admin Dashboard](./screenshots/admin-dashboard.png)
-![Book Appointment](./screenshots/book-appointment.png)
-![Doctor Appointments](./screenshots/doctor-appointments.png)
-![Mobile View](./screenshots/mobile.png)
+![Admin Dashboard](./frontend/screenshots/admin-dashboard.png)
+![Book Appointment](./frontend/screenshots/book-appointment.png)
+![Doctor Appointments](./frontend/screenshots/doctor-appointments.png)
+![Mobile View](./frontend/screenshots/mobile.png)
 
 ---
 

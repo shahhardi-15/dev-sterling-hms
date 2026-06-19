@@ -2,14 +2,17 @@
   <div>
     <!-- Header -->
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Doctor Dashboard</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+        Doctor Dashboard
+      </h1>
       <p class="text-gray-400 text-sm mt-1">
         Welcome back, Dr. {{ auth.userName }}. Here's your schedule for today.
       </p>
     </div>
 
     <!-- Stat Cards -->
-    <div class="grid grid-cols-3 gap-5 mb-8">
+    <
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mb-8">
       <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
         <div class="flex items-start justify-between mb-4">
           <div
